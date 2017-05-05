@@ -10,18 +10,18 @@
     - role: ansible-checkmk_server/env
 
     - role: debops.etc_services
-      etc_services__dependent_list: '{{ ansible_local.checkmk_server | map(attribute="dependent_vars.etc_services__dependent_list") | list }}'
+      etc_services__dependent_list: '{{ checkmk_server__etc_services__dependent_list }}'
 
     - role: debops.ferm
       ferm__dependent_rules:
         - '{{ apache__ferm__dependent_rules }}'
-        - '{{ ansible_local.checkmk_server | map(attribute="dependent_vars.ferm__dependent_rules") | list }}'
+        - '{{ checkmk_server__ferm__dependent_rules }}'
 
     - role: debops.apache
       apache__dependent_snippets: '{{ checkmk_server__apache__dependent_snippets }}'
       apache__dependent_vhosts: '{{ checkmk_server__apache__dependent_vhosts }}'
 
     - role: debops.users
-      users__dependent_accounts: '{{ ansible_local.checkmk_server | map(attribute="dependent_vars.users__dependent_accounts") | list }}'
+      users__dependent_accounts: '{{ checkmk_server__users__dependent_accounts }}'
 
     - role: ansible-checkmk_server
