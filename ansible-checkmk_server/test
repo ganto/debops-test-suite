@@ -12,9 +12,9 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-ansible-galaxy -f install git+https://github.com/ganto/ansible-apache.git,cleanup-snippets debops.etc_services debops.ferm debops.users
+ansible-galaxy -f install debops.apache debops.etc_services debops.ferm git+https://github.com/ganto/ansible-users.git,dependent_vars
 # create symlink for correct role naming
-ln -s /home/travis/build/ganto/ansible-checkmk_server/rolespec/roles/ansible-apache /home/travis/build/ganto/ansible-checkmk_server/rolespec/roles/debops.apache
+ln -s /home/travis/build/ganto/ansible-checkmk_server/rolespec/roles/ansible-users /home/travis/build/ganto/ansible-checkmk_server/rolespec/roles/debops.users
 
 assert_playbook_check_runs
 assert_playbook_idempotent
