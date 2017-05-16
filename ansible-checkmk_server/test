@@ -28,7 +28,9 @@ assert_running 'apache2'
 assert_running 'icinga'
 
 # for checking correct redirect
-assert_exit_code 'wget http://localhost/debops/' '0'
-assert_url 'http://localhost/debops/' '(200|301|302)'
+assert_url 'http://localhost.localdomain/debops/' 301
+assert_url 'https://localhost.localdomain/debops/' 302
+assert_url 'https://localhost.localdomain/debops/check_mk/' 302
+assert_url 'https://localhost.localdomain/debops/check_mk/login.py?_origtarget=index.py'
 
 assert_docs
