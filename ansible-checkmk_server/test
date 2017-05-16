@@ -27,6 +27,8 @@ assert_path '/omd/sites/debops/etc/check_mk/conf.d/wato/rules.mk'
 assert_running 'apache2'
 assert_running 'icinga'
 
-assert_url 'http://localhost/debops/' '(200|302)'
+# for checking correct redirect
+assert_exit_code 'wget http://localhost/debops/' '0'
+assert_url 'http://localhost/debops/' '(200|301|302)'
 
 assert_docs
