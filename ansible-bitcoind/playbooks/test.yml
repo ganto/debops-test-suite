@@ -1,0 +1,20 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  environment: '{{ inventory__environment | d({})
+                   | combine(inventory__group_environment | d({}))
+                   | combine(inventory__host_environment  | d({})) }}'
+
+  roles:
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ bitcoind__etc_services__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ bitcoind__ferm__dependent_rules }}'
+
+    - role: 'ansible-bitcoind'

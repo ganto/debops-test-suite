@@ -1,0 +1,19 @@
+#!/bin/bash
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+ansible-galaxy -f install debops.etc_services
+ansible-galaxy -f install debops.ferm
+
+assert_playbook_check_runs
+assert_playbook_idempotent
+
+assert_in_file '/var/local/bitcoind/.bitcoin/bitcoin.conf' 'datadir='
+# assert_tcp 'localhost' '18332'
+# assert_tcp 'localhost' '18333'
+
+assert_docs
