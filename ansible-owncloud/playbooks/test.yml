@@ -39,10 +39,8 @@
 
     - role: debops.mariadb
       tags: [ 'role::mariadb' ]
-      mariadb__dependent_users:
-        - database: '{{ owncloud__database_map[owncloud__database].dbname }}'
-          user: '{{ owncloud__database_map[owncloud__database].dbuser }}'
-          password: '{{ owncloud__database_map[owncloud__database].dbpass }}'
+      mariadb__dependent_databases: '{{ owncloud__mariadb__dependent_databases }}'
+      mariadb__dependent_users: '{{ owncloud__mariadb__dependent_users }}'
       when: (owncloud__database == 'mariadb')
 
     - role: debops.unattended_upgrades
