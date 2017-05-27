@@ -18,6 +18,7 @@ ansible-galaxy install -f debops.mariadb debops.nginx debops.logrotate debops.fe
 
 stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}
+sudo rm -rfv /var/lib/mysql /etc/mysql
 
 
 assert_playbook_check_runs
