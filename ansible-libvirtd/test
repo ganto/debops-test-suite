@@ -25,6 +25,9 @@ ansible-galaxy -f install debops.apt_preferences debops.ferm
 assert_playbook_check_runs
 assert_playbook_idempotent
 
+echo "Check service names"
+ls -l /etc/init.d
+
 
 assert_path "/etc/libvirt/libvirt.conf"
 assert_path "/etc/libvirt/libvirtd.conf"
