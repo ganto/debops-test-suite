@@ -12,6 +12,8 @@
     - role: 'debops.ferm'
       ferm__dependent_rules:
         - '{{ libvirtd__ferm__dependent_rules }}'
+        - '{{ libvirtd_qemu__ferm__dependent_rules }}'
 
     - role: 'ansible-libvirtd'
 
+    - role: 'debops.libvirtd_qemu'
