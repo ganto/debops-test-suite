@@ -12,6 +12,8 @@
 echo "Python path"
 python -c "import sys; print '\n'.join(sys.path)"
 
+echo "Test pyyaml"
+python -v -c "import yaml"
 
 install_ansible ${test_ansible_version}
 ansible_plugins
