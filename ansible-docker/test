@@ -9,13 +9,6 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
-echo "Python path"
-python -c "import sys; print '\n'.join(sys.path)"
-
-echo "Install pyyaml"
-pip install pyyaml jinja2 paramiko pycrypto setuptools passlib
-
-
 install_ansible ${test_ansible_version}
 ansible_plugins
 
