@@ -9,11 +9,9 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
-echo "Remove system-wide python-yaml"
-sudo apt-get --purge -y remove python-yaml
+echo "Python path"
+python -c "import sys; print '\n'.join(sys.path)"
 
-echo "Install PyYAML from pip"
-sudo pip install pyyaml
 
 install_ansible ${test_ansible_version}
 ansible_plugins
