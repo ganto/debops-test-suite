@@ -9,8 +9,12 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
-echo "Install python3-yaml"
-sudo apt-get -y install python3-yaml
+echo "Remove system-wide python-yaml"
+sudo apt-get --purge -y remove python-yaml
+
+echo "Install PyYAML from pip"
+sudo pip install pyyaml
+
 install_ansible ${test_ansible_version}
 ansible_plugins
 
