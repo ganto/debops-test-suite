@@ -13,10 +13,8 @@ echo "Python path"
 python -c "import sys; print '\n'.join(sys.path)"
 
 echo "Install pyyaml"
-pip install pyyaml
+pip install pyyaml jinja2 paramiko pycrypto setuptools passlib
 
-echo "Test pyyaml"
-python -v -c "import yaml"
 
 install_ansible ${test_ansible_version}
 ansible_plugins
