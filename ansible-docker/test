@@ -9,6 +9,8 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
+echo "Install python-yaml"
+sudo apt-get -y install python-yaml
 install_ansible ${test_ansible_version}
 ansible_plugins
 
