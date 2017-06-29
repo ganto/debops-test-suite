@@ -16,6 +16,11 @@ echo "Display Ansible facts"
 ansible all -m setup
 
 
+echo "Remove existing docker APT source"
+sudo rm -vf /etc/apt/sources.list.d/docker.list
+sudo apt-get -q update
+
+
 assert_playbook_check_runs
 
 echo "Debug APT sources"
