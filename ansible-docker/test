@@ -13,6 +13,10 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+echo "Uninstall existing Docker package"
+sudo apt-get --purge -y remove 'docker*'
+
+
 echo "Remove existing docker APT source"
 sudo rm -vf /etc/apt/sources.list.d/docker.list
 sudo apt-get -q update
