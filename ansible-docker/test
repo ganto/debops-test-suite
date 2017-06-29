@@ -17,6 +17,12 @@ ansible all -m setup
 
 
 assert_playbook_check_runs
+
+echo "Debug APT sources"
+ls -l /etc/apt/sources.list.d
+cat /etc/apt/sources.list.d/*
+
+
 assert_playbook_idempotent
 
 
