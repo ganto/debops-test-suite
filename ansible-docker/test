@@ -12,9 +12,6 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-echo "Display Ansible facts"
-ansible all -m setup
-
 
 echo "Remove existing docker APT source"
 sudo rm -vf /etc/apt/sources.list.d/docker.list
@@ -22,15 +19,11 @@ sudo apt-get -q update
 
 
 assert_playbook_check_runs
-
-echo "Debug APT sources"
-ls -l /etc/apt/sources.list.d
-cat /etc/apt/sources.list.d/*
-
-
 assert_playbook_idempotent
+
+echo "Show docker package policy"
+apt-cache policy docker-ce
 
 
 assert_path "/etc/default/docker"
 assert_docs
-
