@@ -12,6 +12,9 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
+echo "Display Ansible facts"
+ansible all -m setup
+
 
 assert_playbook_check_runs
 assert_playbook_idempotent
