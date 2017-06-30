@@ -48,7 +48,7 @@ sudo apt-get -yq install ruby2.1 ruby2.1-dev
 export GOROOT="/usr/lib/go"
 export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
 
-sudo gem install bundler
+sudo gem install bundler:1.14.6
 
 install_ansible ${test_ansible_version}
 ansible_plugins
