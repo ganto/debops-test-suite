@@ -23,6 +23,7 @@ sudo rm -rf /etc/redis
 # Purge MySQL for a clean slate
 stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}
+sudo rm -rf /etc/mysql /var/lib/mysql
 
 fix_precise_issues
 
