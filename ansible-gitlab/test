@@ -19,6 +19,11 @@ unset rvm_bin_path GEM_HOME IRBRC MY_RUBY_HOME rvm_autoupdate_flag rvm_path RACK
 stop redis-server
 purge redis-server
 sudo rm -rf /etc/redis
+
+# Purge MySQL for a clean slate
+stop mysql
+purge ${ROLESPEC_MYSQL_LIBS}
+
 fix_precise_issues
 
 # Add Ruby 2.1 PPA and Golang PPA
