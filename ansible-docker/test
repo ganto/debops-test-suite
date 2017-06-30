@@ -29,5 +29,9 @@ echo "Show docker package policy"
 apt-cache policy docker-ce
 
 
+echo "docker run hello-world"
+sudo docker run hello-world
+
+
 assert_path "/etc/default/docker"
 assert_docs
