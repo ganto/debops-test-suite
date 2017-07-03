@@ -22,7 +22,7 @@
     - role: debops.nodejs
       nodejs__upstream: True
       nodejs__npm_dependent_packages:
-        - '{{ gitlab__nodejs__npm_dependent_packages }}'
+        - '{{ gitlab__nodejs__npm_dependent_packages | d([]) }}'
 
     - role: debops.etc_services
       etc_services__dependent_list:
