@@ -15,7 +15,6 @@ ansible_plugins
 
 ansible-galaxy -f install debops.pki debops.apt_preferences debops.etc_services debops.ferm debops.secret
 
-sudo pip install netaddr
 
 stop rabbitmq-server
 purge rabbitmq-server
