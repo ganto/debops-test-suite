@@ -26,6 +26,11 @@ echo "Fix lack of 'amqps' service in service database"
 echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
 
 assert_playbook_check_runs
+
+echo "Debug firewall configuration"
+sudo ls -l /etc/ferm/ferm.d/
+sudo cat /etc/ferm/ferm.d/*
+
 assert_playbook_idempotent
 
 
