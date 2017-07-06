@@ -9,3 +9,4 @@ mariadb__dependent_databases:
 
   - name: 'testapp'
 
+mariadb__flavor: 'mysql-5.7_galera-3'
