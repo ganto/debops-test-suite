@@ -23,6 +23,12 @@ echo "Fix lack of 'amqps' service in service database"
 echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
 
 assert_playbook_check_runs
+
+echo "Debug startup issues"
+sudo cat /var/log/rabbitmq/*
+
+sudo cat /etc/rabbitmq/rabbitmq.config
+
 assert_playbook_idempotent
 
 
