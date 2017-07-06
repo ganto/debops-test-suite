@@ -1,18 +1,18 @@
 ---
 
-- name: Manage PKI environment
-  hosts: [ 'debops_service_rabbitmq_server' ]
-  become: True
-
-  roles:
-
-    - role: debops.pki/env
-
-    - role: debops.secret
-      secret__directories:
-        - '{{ pki_env_secret_directories }}'
-
-    - role: debops.pki
+#- name: Manage PKI environment
+#  hosts: [ 'debops_service_rabbitmq_server' ]
+#  become: True
+#
+#  roles:
+#
+#    - role: debops.pki/env
+#
+#    - role: debops.secret
+#      secret__directories:
+#        - '{{ pki_env_secret_directories }}'
+#
+#    - role: debops.pki
 
 
 - name: Manage RabbitMQ service
