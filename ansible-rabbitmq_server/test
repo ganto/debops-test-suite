@@ -22,6 +22,8 @@ ansible all -m setup -b
 stop rabbitmq-server
 purge rabbitmq-server
 
+echo "Fix lack of 'amqps' service in service database"
+echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
 
 assert_playbook_check_runs
 assert_playbook_idempotent
