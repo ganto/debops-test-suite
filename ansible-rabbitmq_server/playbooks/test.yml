@@ -1,0 +1,27 @@
+---
+
+- name: Manage RabbitMQ service
+  hosts: [ 'debops_service_rabbitmq_server' ]
+  become: True
+
+  roles:
+
+    - role: ansible-rabbitmq_server/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ rabbitmq_server__secret__directories }}'
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ rabbitmq_server__apt_preferences__dependent_list }}'
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ rabbitmq_server__etc_services__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ rabbitmq_server__ferm__dependent_rules }}'
+
+    - role: ansible-rabbitmq_server
