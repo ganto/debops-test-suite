@@ -17,7 +17,7 @@ ansible-galaxy -f install debops.ferm debops.tcpwrappers
 
 
 stop mysql
-purge ${ROLESPEC_MYSQL_LIBS}
+purge mysql-common mysql-server-5.6 mysql-server-core-5.6 mysql-client-5.6 mysql-client-core-5.6
 
 
 assert_playbook_check_runs
