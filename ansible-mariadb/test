@@ -13,7 +13,8 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
-ansible-galaxy install debops.mariadb_server
+ansible-galaxy install git+https://github.com/ganto/ansible-mariadb_server.git,galera-repo-update
+ln -s /home/travis/build/ganto/ansible-mariadb/rolespec/roles/ansible-mariadb_server /home/travis/build/ganto/ansible-mariadb/rolespec/roles/debops.mariadb_server
 
 
 stop mysql
