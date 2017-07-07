@@ -25,6 +25,9 @@ echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
 echo "Show Ansible facts"
 ansible all -m setup
 
+echo "Show disk space"
+df -h
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
