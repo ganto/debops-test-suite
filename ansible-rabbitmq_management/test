@@ -13,7 +13,7 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
-ansible-galaxy -f install debops.rabbitmq_management debops.nginx  debops.apt_preferences debops.etc_services debops.ferm debops.secret
+ansible-galaxy -f install debops.rabbitmq_server debops.nginx debops.apt_preferences debops.etc_services debops.ferm debops.secret
 
 
 stop rabbitmq-server
