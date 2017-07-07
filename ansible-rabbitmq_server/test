@@ -22,6 +22,9 @@ purge rabbitmq-server
 echo "Fix lack of 'amqps' service in service database"
 echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
 
+echo "Show Ansible facts"
+ansible all -m setup
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
@@ -30,7 +33,7 @@ echo "netstat -lp"
 netstat -lp
 
 echo "RabbitMQ state"
-sudo rabbitmqctl status
+sudo rabbitmqctl raport
 
 echo "RabbitMQ config file"
 ls -l /etc/rabbitmq/
