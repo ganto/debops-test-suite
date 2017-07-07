@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# test: Test debops.rabbitmq_management
+# Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
+# Part of the DebOps project - http://debops.org/
+
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+
+ansible-galaxy -f install debops.rabbitmq_management debops.nginx  debops.apt_preferences debops.etc_services debops.ferm debops.secret
+
+
+stop rabbitmq-server
+purge rabbitmq-server
+
+echo "Fix lack of 'amqps' service in service database"
+echo "amqps     5671/tcp" | sudo tee -a "/etc/services"
+
+
+assert_playbook_check_runs
+assert_playbook_idempotent
+
+
+echo "netstat -lp"
+netstat -lp
+
+echo "RabbitMQ state"
+sudo rabbitmqctl report
+
+echo "RabbitMQ config file"
+ls -l /etc/rabbitmq/
+sudo cat /etc/rabbitmq/rabbitmq.config
+
+
+assert_path "/etc/rabbitmq/rabbitmq.config"
+assert_docs

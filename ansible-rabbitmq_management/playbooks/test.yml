@@ -1,0 +1,69 @@
+---
+
+- name: Manage RabbitMQ service
+  hosts: [ 'debops_service_rabbitmq_management' ]
+  become: True
+
+  roles:
+
+    - role: debops.rabbitmq_server/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ rabbitmq_server__secret__directories }}'
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ rabbitmq_server__apt_preferences__dependent_list }}'
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ rabbitmq_server__etc_services__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ rabbitmq_server__ferm__dependent_rules }}'
+
+    - role: debops.rabbitmq_server
+
+- name: Manage RabbitMQ Management Console
+  hosts: [ 'debops_service_rabbitmq_management' ]
+  become: True
+
+  roles:
+
+    - role: debops.rabbitmq_server/env
+      when: rabbitmq_management__local|bool
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ rabbitmq_server__secret__directories }}'
+      when: rabbitmq_management__local|bool
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ rabbitmq_management__etc_services__dependent_list }}'
+      when: rabbitmq_management__local|bool
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ nginx__apt_preferences__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nginx__ferm__dependent_rules }}'
+
+    - role: debops.nginx
+      nginx__dependent_servers:
+        - '{{ rabbitmq_management__nginx__dependent_servers }}'
+      nginx__dependent_upstreams:
+        - '{{ rabbitmq_management__nginx__dependent_upstreams }}'
+
+    - role: debops.rabbitmq_server
+      rabbitmq_server__dependent_role: 'rabbitmq_management'
+      rabbitmq_server__dependent_state: '{{ rabbitmq_management__deploy_state }}'
+      rabbitmq_server__dependent_config:
+        - '{{ rabbitmq_management__rabbitmq_server__dependent_config }}'
+      when: rabbitmq_management__local|bool
+
+    - role: ansible-rabbitmq_management
