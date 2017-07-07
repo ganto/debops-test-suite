@@ -1,0 +1,3 @@
+---
+
+mariadb_server__flavor: 'mysql-5.7_galera-3'
