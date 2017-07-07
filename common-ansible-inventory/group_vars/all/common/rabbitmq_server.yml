@@ -2,3 +2,8 @@
 
 # Force binding of TCP connections on all interfaces to fix an issue wih loopback
 rabbitmq_server__amqp_allow: [ '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16' ]
+
+# Use smaller resource limits, Travis hosts have ~8 GB of RAM, but about ~12 GB
+# of available disk space. The role defaults will result in the service not
+# starting at all.
+rabbitmq_server__relative_disk_free_limit: 0.2
