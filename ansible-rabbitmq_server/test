@@ -36,7 +36,7 @@ echo "netstat -lp"
 netstat -lp
 
 echo "RabbitMQ state"
-sudo rabbitmqctl raport
+sudo rabbitmqctl report
 
 echo "RabbitMQ config file"
 ls -l /etc/rabbitmq/
