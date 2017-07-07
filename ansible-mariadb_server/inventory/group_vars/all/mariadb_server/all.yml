@@ -4,3 +4,7 @@ mariadb_server__bind_address: '0.0.0.0'
 mariadb_server__allow: [ '192.168.0.0/16' ]
 mariadb_server__flavor: 'mysql-5.7_galera-3'
 
+# Disable mysqlautobackup as it will mess with the MySQL client
+# TODO: investigate
+mariadb_server__backup: False
+
