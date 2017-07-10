@@ -1,0 +1,15 @@
+---
+
+- name: Manage /etc/aliases database
+  hosts: [ 'debops_service_etc_aliases' ]
+  become: True
+
+  roles:
+
+    - role: ansible-etc_aliases/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ etc_aliases__secret__directories }}'
+
+    - role: ansible-etc_aliases
