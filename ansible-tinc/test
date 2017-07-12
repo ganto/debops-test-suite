@@ -19,6 +19,10 @@ ansible-galaxy -f install debops.etc_services
 ansible-galaxy -f install debops.ferm
 
 
+printf "%s\n" "Display Ansible facts"
+ansible all -m setup
+
+
 assert_playbook_check_runs
 echo "------------------------------------------------------------"
 ls -lR /etc/tinc
