@@ -23,6 +23,10 @@ printf "%s\n" "Display Ansible facts"
 ansible all -m setup
 
 
+printf "%s\n" "List inventory_hostnames Ansible sees"
+ansible all --list-hosts
+
+
 assert_playbook_check_runs
 echo "------------------------------------------------------------"
 ls -lR /etc/tinc
