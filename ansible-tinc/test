@@ -26,6 +26,9 @@ ansible all -m setup
 printf "%s\n" "List inventory_hostnames Ansible sees"
 ansible all --list-hosts
 
+printf "%s\n" "List inventory groups Ansible sees"
+ansible all -m debug -a 'var=groups'
+
 
 assert_playbook_check_runs
 echo "------------------------------------------------------------"
