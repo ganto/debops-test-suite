@@ -25,5 +25,6 @@ assert_in_file "/etc/aliases" "root"
 assert_in_file "/etc/aliases" "postmaster"
 
 
+assert_python
 assert_docs
 
