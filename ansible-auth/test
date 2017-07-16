@@ -25,3 +25,5 @@ assert_permission "/etc/sudoers.d/admins" "440"
 
 # Check if admins group can use sudo without password
 assert_in_file "/etc/sudoers.d/admins" "NOPASSWD"
+
+assert_docs
