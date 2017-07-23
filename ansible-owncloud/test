@@ -8,7 +8,6 @@
 . "${ROLESPEC_LIB}/main"
 . "${ROLESPEC_TEST}/../defaults.conf"
 
-test_ansible_version="stable-2.2"
 
 install_ansible ${test_ansible_version}
 ansible_plugins
