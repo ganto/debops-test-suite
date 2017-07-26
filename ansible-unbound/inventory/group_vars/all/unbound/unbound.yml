@@ -2,7 +2,7 @@
 
 unbound__server:
 
-  - verbose: 1
+  - verbosity: 1
 
   - name: 'extended-statistics'
     value: True
