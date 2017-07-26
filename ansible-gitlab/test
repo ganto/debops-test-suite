@@ -92,4 +92,5 @@ sudo cat /var/local/git/gitlab/config/resque.yml
 
 assert_url "http://localhost.localdomain/users/sign_in" 302
 
-assert_docs
+# Docs are tested at the beginning before all inventory changes
+echo "Check documentation status at the start"
