@@ -27,11 +27,11 @@ assert_playbook_idempotent
 echo "Check if unbound is running"
 ps aux | grep unbound
 
-#echo "Try and restart unbound"
-#sudo service unbound restart
+echo "Try and restart unbound"
+sudo service unbound restart
 
 echo "Check unbound logs"
-sudo grep 'unbound' /var/log/syslog | grep -v 'ansible' | tail -n 20
+sudo grep 'unbound' /var/log/syslog | grep -v 'ansible' | tail -n 50
 
 echo "Check if unbound is working"
 sudo unbound-control status
