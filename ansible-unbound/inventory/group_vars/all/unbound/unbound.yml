@@ -3,11 +3,13 @@
 unbound__server:
 
   - name: 'interface'
-    value: '0.0.0.0'
+    value: '127.0.0.1'
     comment: |
       IPv6 on Travis-CI seems to not work:
       Restarting recursive DNS server unbound...
       unbound[12428:0] debug: failed address ::1 port 53
+
+  - 'control-interface': '127.0.0.1'
 
   - verbosity: 1
 
