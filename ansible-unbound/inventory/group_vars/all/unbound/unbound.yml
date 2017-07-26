@@ -2,7 +2,8 @@
 
 unbound__server:
 
-  - interface: '0.0.0.0'
+  - name: 'interface'
+    value: '0.0.0.0'
     comment: |
       IPv6 on Travis-CI seems to not work:
       Restarting recursive DNS server unbound...
