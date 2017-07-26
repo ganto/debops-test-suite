@@ -20,6 +20,14 @@ ansible-galaxy -f install debops.apt_preferences debops.etc_services
 assert_playbook_check_runs
 assert_playbook_idempotent
 
+echo "Check if unbound is running"
+ps aux | grep unbound
+
+echo "Check unbound logs"
+sudo grep 'unbound' /var/log/syslog | tail -n 20
+
+echo "Try and restart unbound"
+sudo service unbound restart
 
 echo "Check if unbound is working"
 sudo unbound-control status
