@@ -12,20 +12,20 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
+sudo apt-get install -yq dnsutils
 
 ansible-galaxy -f install debops.apt_preferences debops.etc_services
-
-
-echo "Check current DNS nameservers"
-cat /etc/resolv.conf
 
 
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-echo "Check new DNS nameservers"
-cat /etc/resolv.conf
+echo "Check if unbound is working"
+sudo unbound-control status
+
+echo "Test: dig @127.0.0.1 travis-ci.org"
+dig @127.0.0.1 travis-ci.org
 
 
 assert_docs

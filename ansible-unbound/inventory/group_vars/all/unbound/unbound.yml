@@ -1,0 +1,15 @@
+---
+
+unbound__server:
+
+  - verbose: 1
+
+  - name: 'extended-statistics'
+    value: True
+
+unbound__zones:
+
+  - name: 'test-zone'
+    zone: 'nat.example.net'
+    revdns: '192.168.0.0/20'
+    nameserver: '8.8.4.4'
