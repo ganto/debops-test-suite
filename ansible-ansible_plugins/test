@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# test: Test debops.ansible_plugins
+# Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
+# Part of the DebOps project - http://debops.org/
+
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+
+fix_precise_issues
+
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+
+# Test documentation
+assert_docs
+assert_python
