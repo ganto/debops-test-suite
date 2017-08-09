@@ -13,13 +13,7 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
-ansible-galaxy -f install debops.php5
-ansible-galaxy -f install debops.nginx
-
-
-# Use Trusty packages for more recent PHP5 support
-echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/trusty.list
-sudo apt-get -qq update
+ansible-galaxy -f install debops.apt_preferences debops.ferm debops.php debops.nginx
 
 
 assert_playbook_check_runs
@@ -29,4 +23,3 @@ assert_playbook_idempotent
 assert_path "/srv/www/roundcube"
 
 assert_docs
-

@@ -8,18 +8,28 @@
                    | combine(inventory__host_environment  | d({})) }}'
 
   roles:
+    - role: debops.php/env
 
-    - role: debops.php5
-      php5_packages:
-        - '{{ roundcube__php5_packages }}'
-      php5_pools:
-        - '{{ roundcube__php5_pool }}'
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ nginx__apt_preferences__dependent_list }}'
+        - '{{ php__apt_preferences__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nginx__ferm__dependent_rules }}'
+
+    - role: debops.php
+      php__dependent_packages:
+        - '{{ roundcube__php__dependent_packages }}'
+      php__dependent_pools:
+        - '{{ roundcube__php__dependent_pools }}'
 
     - role: debops.nginx
-      nginx_servers:
-        - '{{ roundcube__nginx_server }}'
-      nginx_upstreams:
-        - '{{ roundcube__nginx_upstream_php5 }}'
+      nginx__dependent_servers:
+        - '{{ roundcube__nginx__dependent_servers }}'
+      nginx__dependent_upstreams:
+        - '{{ roundcube__nginx__dependent_upstreams }}'
 
     - role: 'ansible-roundcube'
 
