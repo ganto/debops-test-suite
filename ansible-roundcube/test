@@ -13,7 +13,10 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
-ansible-galaxy -f install debops.apt_preferences debops.ferm debops.php debops.nginx
+ansible-galaxy -f install debops.apt_preferences debops.ferm debops.nginx
+ansible-galaxy -f install git+https://github.com/ganto/ansible-php.git,pkg-filter
+# create symlink for correct role naming
+ln -s ansible-php roles/debops.php
 
 
 assert_playbook_check_runs
