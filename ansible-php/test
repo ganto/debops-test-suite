@@ -19,7 +19,7 @@ ansible-galaxy -f install debops.logrotate
 assert_playbook_check_runs
 
 echo "Check contents"
-sudo ls -lR /etc/php5
+ls -lR /etc/php5 || ls -lR /etc/php
 
 assert_playbook_idempotent
 
