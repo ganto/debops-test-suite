@@ -20,6 +20,16 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-assert_path "/srv/www/roundcube"
+assert_path '/srv/www/sites/roundcube.localdomain/public'
+
+assert_running nginx
+assert_running php-fpm
+
+sudo echo '127.0.0.1 roundcube.localdomain' >> /etc/hosts
+
+assert_url 'http://roundcube.localdomain'
+
+test -s /srv/www/sites/roundcube.localdomain/public/logs/error &&
+    cat /srv/www/sites/roundcube.localdomain/public/logs/error
 
 assert_docs
