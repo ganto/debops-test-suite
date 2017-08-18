@@ -25,8 +25,9 @@ assert_path '/srv/www/sites/roundcube.localdomain/public'
 assert_running nginx
 assert_running php-fpm
 
-sudo echo '127.0.0.1 roundcube.localdomain' >> /etc/hosts
+sudo sed -i '$ a 127.0.0.1 roundcube.localdomain' /etc/hosts
 
+curl 'http://roundcube.localdomain'
 assert_url 'http://roundcube.localdomain'
 
 test -s /srv/www/sites/roundcube.localdomain/public/logs/error &&
