@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# test: Test debops.owncloud
+# Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
+# Part of the DebOps project - http://debops.org/
+
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+
+ansible-galaxy -f install debops.apt_preferences debops.ferm debops.php debops.nginx
+
+
+assert_playbook_check_runs
+assert_playbook_idempotent
+
+
+assert_path '/srv/www/sites/roundcube.localdomain/public'
+
+assert_running nginx
+assert_running php-fpm
+
+sudo sed -i '$ a 127.0.0.1 roundcube.localdomain' /etc/hosts
+
+curl 'http://roundcube.localdomain'
+assert_url 'http://roundcube.localdomain'
+
+test -s /srv/www/sites/roundcube.localdomain/public/logs/error &&
+    cat /srv/www/sites/roundcube.localdomain/public/logs/error
+
+assert_docs

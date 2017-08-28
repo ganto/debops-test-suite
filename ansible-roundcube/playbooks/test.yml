@@ -1,0 +1,35 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  environment: '{{ inventory__environment | d({})
+                   | combine(inventory__group_environment | d({}))
+                   | combine(inventory__host_environment  | d({})) }}'
+
+  roles:
+    - role: debops.php/env
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ nginx__apt_preferences__dependent_list }}'
+        - '{{ php__apt_preferences__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nginx__ferm__dependent_rules }}'
+
+    - role: debops.php
+      php__dependent_packages:
+        - '{{ roundcube__php__dependent_packages }}'
+      php__dependent_pools:
+        - '{{ roundcube__php__dependent_pools }}'
+
+    - role: debops.nginx
+      nginx__dependent_servers:
+        - '{{ roundcube__nginx__dependent_servers }}'
+      nginx__dependent_upstreams:
+        - '{{ roundcube__nginx__dependent_upstreams }}'
+
+    - role: 'ansible-roundcube'
+
