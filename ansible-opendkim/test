@@ -26,7 +26,7 @@ echo "Contents of /etc/postfix/master.cf"
 cat /etc/postfix/master.cf
 
 echo "Contents of /etc/opendkim.conf"
-cat /etc/opendkim.conf
+sudo cat /etc/opendkim.conf
 
 assert_path "/etc/opendkim.conf"
 assert_running "opendkim"
