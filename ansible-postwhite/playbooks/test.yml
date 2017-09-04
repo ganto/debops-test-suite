@@ -1,0 +1,29 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+
+    - role: debops.postfix/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ postfix__secret__directories }}'
+
+    - role: debops.postfix
+      postfix__dependent_packages:
+        - '{{ postscreen__postfix__dependent_packages }}'
+      postfix__dependent_maincf:
+        - role: 'postscreen'
+          config: '{{ postscreen__postfix__dependent_maincf }}'
+        - role: 'postwhite'
+          config: '{{ postwhite__postfix__dependent_maincf }}'
+      postfix__dependent_mastercf:
+        - role: 'postscreen'
+          config: '{{ postscreen__postfix__dependent_mastercf }}'
+
+    - role: debops.postscreen
+
+    - role: ansible-postwhite
