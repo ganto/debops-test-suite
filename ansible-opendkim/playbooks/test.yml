@@ -26,5 +26,8 @@
     - role: debops.unbound
 
     - role: debops.postfix
+      postfix__dependent_maincf:
+        - role: 'opendkim'
+          config: '{{ opendkim__postfix__dependent_maincf }}'
 
     - role: ansible-opendkim
