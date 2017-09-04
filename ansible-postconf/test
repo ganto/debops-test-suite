@@ -17,6 +17,7 @@ ansible-galaxy install -f debops.saslauthd debops.postfix debops.secret debops.f
 
 
 assert_playbook_check_runs
+assert_ansible_check_diff
 assert_playbook_idempotent
 
 echo "Show firewall configuration"
