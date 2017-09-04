@@ -5,6 +5,7 @@
 
   roles:
 
+
     - role: debops.postfix/env
 
     - role: ansible-opendkim/env
@@ -13,6 +14,16 @@
       secret__directories:
         - '{{ opendkim__secret__directories }}'
         - '{{ postfix__secret__directories }}'
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ unbound__apt_preferences__dependent_list }}'
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ unbound__etc_services__dependent_list }}'
+
+    - role: debops.unbound
 
     - role: debops.postfix
 
