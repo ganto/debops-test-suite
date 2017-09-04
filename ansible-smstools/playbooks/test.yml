@@ -39,4 +39,4 @@
         - role: 'smstools'
           config: '{{ smstools__postfix__dependent_mastercf }}'
 
-    - role: debops.smstools
+    - role: ansible-smstools
