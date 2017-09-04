@@ -1,0 +1,15 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+    - role: debops.postfix/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ postfix__secret__directories }}'
+    - role: debops.postfix
+
+    - role: 'ansible-saslauthd'
