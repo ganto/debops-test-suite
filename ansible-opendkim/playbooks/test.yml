@@ -11,6 +11,7 @@
 
     - role: debops.secret
       secret__directories:
+        - '{{ opendkim__secret__directories }}'
         - '{{ postfix__secret__directories }}'
 
     - role: debops.postfix
