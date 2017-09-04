@@ -23,6 +23,9 @@ assert_playbook_idempotent
 mailman_host="$(hostname -f)"
 
 
+echo 'Contents of /etc/postfix/main.cf:'
+cat /etc/postfix/main.cf
+
 assert_path "/var/lib/mailman/lists/mailman/config.pck"
 assert_path "/var/lib/mailman/lists/test-list/config.pck"
 assert_url "http://${mailman_host}/" 301
