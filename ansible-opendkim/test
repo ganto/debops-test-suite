@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# test: Test debops.saslauthd
+# test: Test debops.opendkim
 # Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
 # Part of the DebOps project - http://debops.org/
 
@@ -25,14 +25,11 @@ cat /etc/postfix/main.cf
 echo "Contents of /etc/postfix/master.cf"
 cat /etc/postfix/master.cf
 
-echo "Contents of /etc/default/saslauthd-smtpd"
-cat /etc/default/saslauthd-smtpd
+echo "Contents of /etc/opendkim.conf"
+cat /etc/opendkim.conf
 
-ls -l /var/spool/postfix/var/lib/saslauthd
-
-assert_path "/etc/default/saslauthd-smtpd"
-assert_path "/etc/postfix/sasl/smtpd.conf"
-assert_running "saslauthd"
+assert_path "/etc/opendkim.conf"
+assert_running "opendkim"
 
 # Test documentation
 assert_docs
