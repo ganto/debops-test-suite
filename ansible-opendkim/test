@@ -9,6 +9,9 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
+# Required on Ansible Controller for private key generation
+sudo apt-get -yq install python-openssl
+
 install_ansible ${test_ansible_version}
 ansible_plugins
 
