@@ -7,6 +7,23 @@
 
   roles:
 
+    - role: debops.postfix/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ postfix__secret__directories }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ postfix__ferm__dependent_rules }}'
+
+    - role: debops.postfix
+      postfix__dependent_maincf:
+        - role: 'dovecot'
+          config: '{{ dovecot__postfix__dependent_maincf }}'
+      postfix__dependent_mastercf:
+        - role: 'dovecot'
+          config: '{{ dovecot__postfix__dependent_mastercf }}'
+
       # Install and configure Dovecot using cloned role
     - role: 'ansible-dovecot'
-
