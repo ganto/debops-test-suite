@@ -1,0 +1,42 @@
+---
+
+- name: Manage SMS Gateway service
+  hosts: [ 'debops_service_smstools' ]
+  become: True
+
+  environment: '{{ inventory__environment | d({})
+                   | combine(inventory__group_environment | d({}))
+                   | combine(inventory__host_environment  | d({})) }}'
+
+  roles:
+
+    - role: debops.postfix/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ postfix__secret__directories }}'
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ smstools__etc_services__dependent_list }}'
+
+    - role: debops.rsyslog
+
+    - role: debops.tcpwrappers
+      tcpwrappers__dependent_allow:
+        - '{{ smstools__tcpwrappers__dependent_allow }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ postfix__ferm__dependent_rules }}'
+        - '{{ smstools__ferm__dependent_rules }}'
+
+    - role: debops.postfix
+      postfix__dependent_maincf:
+        - role: 'smstools'
+          config: '{{ smstools__postfix__dependent_maincf }}'
+      postfix__dependent_mastercf:
+        - role: 'smstools'
+          config: '{{ smstools__postfix__dependent_mastercf }}'
+
+    - role: debops.smstools
