@@ -1,0 +1,36 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+
+    - role: ansible-postconf/env
+
+    - role: debops.postfix/env
+      postfix__dependent_mastercf:
+        - role: 'postconf'
+          config: '{{ postconf__postfix__dependent_mastercf }}'
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ postfix__secret__directories }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ postfix__ferm__dependent_rules }}'
+
+    - role: debops.postfix
+      postfix__dependent_maincf:
+        - role: 'postconf'
+          config: '{{ postconf__postfix__dependent_maincf }}'
+      postfix__dependent_mastercf:
+        - role: 'postconf'
+          config: '{{ postconf__postfix__dependent_mastercf }}'
+      postfix__dependent_lookup_tables:
+        - '{{ postconf__postfix__dependent_lookup_tables }}'
+
+    - role: debops.saslauthd
+
+    - role: ansible-postconf
