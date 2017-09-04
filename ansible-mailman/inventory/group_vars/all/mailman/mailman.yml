@@ -1,6 +1,8 @@
 ---
 
-mailman__site_domain: 'test.dev.{{ ansible_domain }}'
+mailman__domain: 'test.dev.{{ ansible_domain }}'
+
+mailman__site_domain: '{{ ansible_fqdn }}'
 
 mailman__lists:
 
