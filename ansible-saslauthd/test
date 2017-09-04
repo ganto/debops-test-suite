@@ -28,7 +28,8 @@ cat /etc/postfix/master.cf
 echo "Contents of /etc/default/saslauthd-smtpd"
 cat /etc/default/saslauthd-smtpd
 
-sudo ls -l /var/spool/postfix/var/lib/saslauthd
+sudo ls -l /var/spool/postfix/var/run
+sudo ls -l /var/spool/postfix/var/run/saslauthd
 
 assert_path "/etc/default/saslauthd-smtpd"
 assert_path "/etc/postfix/sasl/smtpd.conf"
