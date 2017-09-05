@@ -5,6 +5,7 @@
 
   roles:
 
+    - role: debops.saslauthd
 
     - role: ansible-postconf/env
 
@@ -30,7 +31,5 @@
           config: '{{ postconf__postfix__dependent_mastercf }}'
       postfix__dependent_lookup_tables:
         - '{{ postconf__postfix__dependent_lookup_tables }}'
-
-    - role: debops.saslauthd
 
     - role: ansible-postconf
