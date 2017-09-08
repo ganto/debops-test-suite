@@ -38,7 +38,8 @@ sudo rm -rf /etc/mysql /var/lib/mysql
 
 
 assert_playbook_check_runs
-assert_playbook_idempotent || printf "%s\n" "The 'npm' module is not idempotent on Ansible 2.3, but shuld work fine on Ansible 2.4"
+assert_playbook_check_diff
+#assert_playbook_idempotent || printf "%s\n" "The 'npm' module is not idempotent on Ansible 2.3, but shuld work fine on Ansible 2.4"
 
 
 assert_url "http://${ROLESPEC_FQDN}"
