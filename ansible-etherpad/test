@@ -42,3 +42,4 @@ assert_playbook_idempotent
 
 assert_url "http://${ROLESPEC_FQDN}"
 
+assert_docs
