@@ -29,6 +29,8 @@ fi
 install_ansible ${test_ansible_version}
 ansible_plugins
 
+ansible-galaxy -f install debops.apt_preferences debops.etc_services debops.ferm debops.nginx debops.mariadb debops.mariadb_server debops.nodejs debops.logrotate debops.tcpwrappers
+
 
 stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}

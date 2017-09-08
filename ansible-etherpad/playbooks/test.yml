@@ -5,6 +5,50 @@
 
   roles:
 
-      # Install and configure Etherpad using cloned role
-    - role: 'ansible-etherpad'
+    - role: 'debops.ferm'
+      ferm__dependent_rules:
+        - '{{ mariadb_server__ferm__dependent_rules }}'
 
+    - role: 'debops.tcpwrappers'
+      tcpwrappers__dependent_allow:
+        - '{{ mariadb_server__tcpwrappers__dependent_allow }}'
+
+    - role: 'debops.mariadb_server'
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ etherpad__etc_services__dependent_list }}'
+
+    - role: debops.logrotate
+      logrotate__dependent_config:
+        - '{{ etherpad__logrotate__dependent_config }}'
+
+    - role: debops.nodejs
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ nginx__apt_preferences__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nginx__ferm__dependent_rules }}'
+
+    - role: debops.mariadb
+      mariadb__dependent_users:
+        - '{{ etherpad__mariadb__dependent_users }}'
+      mariadb__dependent_databases:
+        - '{{ etherpad__mariadb__dependent_databases }}'
+      when: etherpad__database == 'mysql'
+
+    - role: debops.nginx
+      nginx__dependent_servers:
+        - '{{ etherpad__nginx__dependent_servers }}'
+      nginx__dependent_upstreams:
+        - '{{ etherpad__nginx__dependent_upstreams }}'
+
+    - role: 'ansible-etherpad'
