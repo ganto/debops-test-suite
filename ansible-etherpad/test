@@ -43,11 +43,5 @@ assert_ansible_check_diff
 
 
 curl "http://localhost.localdomain/"
-
-curl "http://${ROLESPEC_FQDN}"
-
 assert_url "http://localhost.localdomain"
-
-assert_url "http://${ROLESPEC_FQDN}"
-
 assert_docs
