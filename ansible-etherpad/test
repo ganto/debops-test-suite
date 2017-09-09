@@ -42,7 +42,11 @@ assert_ansible_check_diff
 #assert_playbook_idempotent || printf "%s\n" "The 'npm' module is not idempotent on Ansible 2.3, but shuld work fine on Ansible 2.4"
 
 
+curl "http://localhost.localdomain/"
+
 curl "http://${ROLESPEC_FQDN}"
+
+assert_url "http://localhost.localdomain"
 
 assert_url "http://${ROLESPEC_FQDN}"
 

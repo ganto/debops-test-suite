@@ -7,7 +7,7 @@ nginx_pki: False
 nodejs_packages: [ 'nodejs' ]
 
 # Used for testing purposes.
-etherpad_domain: [ '{{ ansible_domain }}' ]
+etherpad_domain: [ '{{ ansible_fqdn }}' ]
 
 # It defaults to:
 #etherpad_domain: [ 'pad.{{ ansible_domain }}' ]
