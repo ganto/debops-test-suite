@@ -15,6 +15,7 @@ ansible_plugins
 
 ansible-galaxy -f install debops.ferm debops.tcpwrappers
 
+sudo apt-get -yq install tree
 
 stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}
@@ -25,9 +26,9 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
+tree /etc/mysql
+
 assert_running "mysql"
-assert_in_file "/etc/mysql/conf.d/mysqld.cnf" "0.0.0.0"
 assert_iptables_allow "mysql"
 
 assert_docs
-
