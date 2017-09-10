@@ -26,7 +26,15 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
+echo "Contents of /etc/mysql"
 tree /etc/mysql
+
+echo "Contents of /root/.my.cnf"
+sudo cat /root/.my.cnf
+
+echo "Test if mysql root commands work"
+sudo mysql -e 'show databases ; select Host,User,Password from mysql.user'
+
 
 assert_running "mysql"
 assert_iptables_allow "mysql"
