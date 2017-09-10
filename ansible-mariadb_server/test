@@ -18,6 +18,7 @@ ansible-galaxy -f install debops.ferm debops.tcpwrappers
 
 stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}
+sudo rm -rf /etc/mysql /var/lib/mysql
 
 
 assert_playbook_check_runs
