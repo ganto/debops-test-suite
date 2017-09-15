@@ -25,6 +25,10 @@ stop mysql
 purge ${ROLESPEC_MYSQL_LIBS}
 sudo rm -rf /etc/mysql /var/lib/mysql
 
+stop postgresql
+purge ${ROLESPEC_POSTGRESQL_LIBS}
+sudo rm -rf /var/lib/postgresql
+
 fix_precise_issues
 
 # Add Ruby 2.1 PPA and Golang PPA
@@ -62,9 +66,8 @@ ansible-galaxy -f install debops.ferm \
                           debops.ruby \
                           debops.nodejs \
                           debops.postgresql \
-                          debops.mariadb \
                           debops.nginx \
-                          debops.mariadb_server
+                          debops.postgresql_server
 
 
 assert_playbook_check_runs

@@ -5,7 +5,7 @@
 
   roles:
 
-    - role: 'debops.mariadb_server'
+    - role: 'debops.postgresql_server'
 
     - role: ansible-gitlab/env
 
@@ -51,13 +51,6 @@
       postgresql__dependent_pgpass:
         - '{{ gitlab__postgresql__dependent_pgpass }}'
       when: gitlab__database == 'postgresql'
-
-    - role: debops.mariadb
-      mariadb__dependent_databases:
-        - '{{ gitlab__mariadb__dependent_databases }}'
-      mariadb__dependent_users:
-        - '{{ gitlab__mariadb__dependent_users }}'
-      when: gitlab__database == 'mariadb'
 
     - role: debops.nginx
       nginx__dependent_servers:
