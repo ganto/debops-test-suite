@@ -84,17 +84,19 @@ assert_playbook_check_runs
 
 echo "Try and build gitlab-workhorse manually"
 echo "pwd: $(pwd)"
-git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse
+git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse.git
 
 cd gitlab-workhorse
 
 echo "Before make"
+apt-cache policy make
+make --version
 ls -l
+echo "GOROOT=${GOROOT}"
+echo "GOPATH=${GOPATH}"
+
 make
 
-echo "After make"
-ls -l
-tree -L 4 _build
 
 assert_playbook_idempotent_long
 
