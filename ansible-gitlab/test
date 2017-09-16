@@ -92,9 +92,10 @@ echo "Before make"
 apt-cache policy make
 make --version
 ls -l
-echo "GOROOT=${GOROOT}"
-echo "GOPATH=${GOPATH}"
 
+echo "Show environment"
+env
+echo "Run make"
 make
 
 
