@@ -13,10 +13,17 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.apt_preferences
+
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
+echo "Stuff in /etc/apt/preferences.d"
+cat /etc/apt/preferences.d/*
+
+echo "Golang APT policy"
 apt-cache policy golang golang-go
 
 assert_in "$(go version)" "go"
