@@ -17,6 +17,8 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
+apt-cache policy golang golang-go
+
 assert_in "$(go version)" "go"
 assert_docs
 
