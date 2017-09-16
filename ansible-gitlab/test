@@ -49,8 +49,16 @@ sudo rm -rf /etc/apt/sources.list.d/wily.list
 sudo apt-get -yq udpate
 sudo apt-get -yq install ruby2.1 ruby2.1-dev
 
-#export GOROOT="/usr/lib/go"
-#export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
+echo "Show current values"
+echo "GOROOT=${GOROOT}"
+echo "GOTOOLDIR=${GOTOOLDIR}"
+
+export GOROOT="/usr/lib/go"
+export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
+
+echo "Show new values"
+echo "GOROOT=${GOROOT}"
+echo "GOTOOLDIR=${GOTOOLDIR}"
 
 sudo gem install bundler:1.14.6
 
