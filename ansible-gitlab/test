@@ -13,7 +13,7 @@ assert_docs
 
 echo "Clean up the environment"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-unset rvm_bin_path GEM_HOME IRBRC MY_RUBY_HOME rvm_autoupdate_flag rvm_path RACK_ENV rvm_prefix rvm_version RAILS_ENV GEM_PATH RUBY_VERSION rvm_silence_path_mismatch_check_flag
+unset GOROOT GOTOOLDIR rvm_bin_path GEM_HOME IRBRC MY_RUBY_HOME rvm_autoupdate_flag rvm_path RACK_ENV rvm_prefix rvm_version RAILS_ENV GEM_PATH RUBY_VERSION rvm_silence_path_mismatch_check_flag
 
 # Purge redis for a clean slate
 stop redis-server
@@ -49,16 +49,16 @@ sudo rm -rf /etc/apt/sources.list.d/wily.list
 sudo apt-get -yq udpate
 sudo apt-get -yq install ruby2.1 ruby2.1-dev
 
-echo "Show current values"
-echo "GOROOT=${GOROOT}"
-echo "GOTOOLDIR=${GOTOOLDIR}"
-
-export GOROOT="/usr/lib/go"
-export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
-
-echo "Show new values"
-echo "GOROOT=${GOROOT}"
-echo "GOTOOLDIR=${GOTOOLDIR}"
+#echo "Show current values"
+#echo "GOROOT=${GOROOT}"
+#echo "GOTOOLDIR=${GOTOOLDIR}"
+#
+#export GOROOT="/usr/lib/go"
+#export GOTOOLDIR="/usr/lib/go/pkg/tool/linux_amd64"
+#
+#echo "Show new values"
+#echo "GOROOT=${GOROOT}"
+#echo "GOTOOLDIR=${GOTOOLDIR}"
 
 sudo gem install bundler:1.14.6
 
