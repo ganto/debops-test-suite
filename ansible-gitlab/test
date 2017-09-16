@@ -60,6 +60,8 @@ sudo apt-get -yq install ruby2.1 ruby2.1-dev
 #echo "GOROOT=${GOROOT}"
 #echo "GOTOOLDIR=${GOTOOLDIR}"
 
+sudo apt-get install tree
+
 sudo gem install bundler:1.14.6
 
 install_ansible ${test_ansible_version}
@@ -79,6 +81,21 @@ ansible-galaxy -f install debops.ferm \
 
 
 assert_playbook_check_runs
+
+echo "Try and build gitlab-workhorse manually"
+echo "pwd: $(pwd)"
+git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse
+
+cd gitlab-workhorse
+
+echo "Before make"
+ls -l
+make
+
+echo "After make"
+ls -l
+tree -L 4 _build
+
 assert_playbook_idempotent_long
 
 
