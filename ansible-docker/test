@@ -21,6 +21,9 @@ echo "Remove existing docker APT source"
 sudo rm -vf /etc/apt/sources.list.d/docker.list
 sudo apt-get -q update
 
+echo "Remove existing docker-compose"
+sudo rm -vf /usr/local/bin/docker-compose
+
 
 assert_playbook_check_runs
 assert_playbook_idempotent
