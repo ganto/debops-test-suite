@@ -121,6 +121,9 @@ echo "Randomized Redis password: '$(sudo redis-password)'"
 echo "Debug, check gitlab redis config"
 sudo cat /var/local/git/gitlab/config/resque.yml
 
+echo "Run gitlab:check"
+cd ~git/gitlab && sudo -u git bundle exec rake gitlab:check SANITIZE=true RAILS_ENV=production
+
 assert_url "http://localhost.localdomain/users/sign_in" 302
 
 # Docs are tested at the beginning before all inventory changes
