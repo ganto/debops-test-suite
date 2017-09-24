@@ -11,7 +11,7 @@
 
     - role: debops.etc_aliases/env
 
-    - role: ansible-postfix/env
+    - role: debops.postfix/env
 
     - role: debops.secret
       secret__directories:
