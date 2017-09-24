@@ -13,20 +13,26 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.apt_preferences debops.etc_services
+
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
 sleep 20
 
+echo "monit --version"
+sudo monit --version
+
+echo "monit report"
+sudo monit report
+
+echo "monit summary"
+sudo monit summary
+
 assert_monitoring "ssh"
 
-assert_in_file "/etc/monit/conf.d/base_ssh.conf" "timeout 20 seconds"
-assert_in_file "/etc/monit/conf.d/base_ssh.conf" "cpu"
+assert_running "monit"
 
-
-assert_playbook_check_runs --extra-vars '{"monit_process_list":[{"pid":"sshd.pid","process":"ssh","delete":"true"}]}'
-
-sleep 20
-
-assert_monitoring "ssh" !
+assert_docs
