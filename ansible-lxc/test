@@ -33,6 +33,7 @@ echo "Check package policies"
 apt-cache policy lxc lxc-templates
 
 
+assert_playbook_check_runs --diff
 assert_playbook_idempotent
 
 
