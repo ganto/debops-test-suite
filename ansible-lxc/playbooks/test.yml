@@ -9,6 +9,21 @@
 
   roles:
 
+    - role: debops.etc_aliases/env
+
+    - role: ansible-postfix/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ etc_aliases__secret__directories }}'
+        - '{{ postfix__secret__directories }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ postfix__ferm__dependent_rules }}'
+
+    - role: debops.etc_aliases
+
     - role: debops.postfix
 
 - hosts: 'placeholder_fqdn'
