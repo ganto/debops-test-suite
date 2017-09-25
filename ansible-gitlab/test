@@ -81,6 +81,9 @@ ansible-galaxy -f install debops.ferm \
 
 assert_playbook_check_runs
 
+echo "Check contents of PostgreSQL configuration"
+sudo cat /etc/postgresql/*/*/pg_hba.conf
+
 #echo "Try and build gitlab-workhorse manually"
 #echo "pwd: $(pwd)"
 #git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse.git
