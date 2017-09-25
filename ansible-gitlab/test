@@ -34,18 +34,17 @@ fix_precise_issues
 # Add Ruby 2.1 PPA and Golang PPA
 sudo apt-get -yq install python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
-sudo add-apt-repository -y ppa:gophers/archive
+#sudo add-apt-repository -y ppa:gophers/archive
 #sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
-#echo "deb http://us.archive.ubuntu.com/ubuntu/ wily main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/wily.list
+echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/xenial.list
 sudo apt-get -yq update
 
-# This shouldn't be needed on Ubuntu Trusty
 sudo apt-get -yq install golang golang-go
 echo "golang version"
 apt-cache policy golang
 apt-cache policy golang-go
 
-sudo rm -rf /etc/apt/sources.list.d/wily.list
+sudo rm -rf /etc/apt/sources.list.d/xenial.list
 sudo apt-get -yq udpate
 sudo apt-get -yq install ruby2.1 ruby2.1-dev
 
