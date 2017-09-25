@@ -34,16 +34,16 @@ fix_precise_issues
 # Add Ruby 2.1 PPA and Golang PPA
 sudo apt-get -yq install python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
-#sudo add-apt-repository -y ppa:evarlast/golang1.4
+sudo add-apt-repository -y ppa:gophers/archive
 #sudo add-apt-repository -y ppa:ubuntu-lxc/lxd-stable
-echo "deb http://us.archive.ubuntu.com/ubuntu/ wily main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/wily.list
+#echo "deb http://us.archive.ubuntu.com/ubuntu/ wily main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/wily.list
 sudo apt-get -yq update
 
 # This shouldn't be needed on Ubuntu Trusty
-#sudo apt-get -yq install golang golang-go
-#echo "golang version"
-#apt-cache policy golang
-#apt-cache policy golang-go
+sudo apt-get -yq install golang golang-go
+echo "golang version"
+apt-cache policy golang
+apt-cache policy golang-go
 
 sudo rm -rf /etc/apt/sources.list.d/wily.list
 sudo apt-get -yq udpate
@@ -82,23 +82,23 @@ ansible-galaxy -f install debops.ferm \
 
 assert_playbook_check_runs
 
-echo "Try and build gitlab-workhorse manually"
-echo "pwd: $(pwd)"
-git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse.git
-
-cd gitlab-workhorse
-
-echo "Before make"
-apt-cache policy make
-make --version
-ls -l
-
-echo "Show environment"
-env
-echo "Run make"
-make
-
-
+#echo "Try and build gitlab-workhorse manually"
+#echo "pwd: $(pwd)"
+#git clone --branch v1.3.0 https://gitlab.com/gitlab-org/gitlab-workhorse.git
+#
+#cd gitlab-workhorse
+#
+#echo "Before make"
+#apt-cache policy make
+#make --version
+#ls -l
+#
+#echo "Show environment"
+#env
+#echo "Run make"
+#make
+#
+#
 assert_playbook_idempotent_long
 
 
@@ -112,14 +112,14 @@ curl http://localhost.localdomain/users/sign_in
 echo "Check Go version"
 go version
 
-echo "Debug, redis facts"
-sudo /etc/ansible/facts.d/redis.fact
+#echo "Debug, redis facts"
+#sudo /etc/ansible/facts.d/redis.fact
 
-echo "Debug, check redis password"
-echo "Randomized Redis password: '$(sudo redis-password)'"
+#echo "Debug, check redis password"
+#echo "Randomized Redis password: '$(sudo redis-password)'"
 
-echo "Debug, check gitlab redis config"
-sudo cat /var/local/git/gitlab/config/resque.yml
+#echo "Debug, check gitlab redis config"
+#sudo cat /var/local/git/gitlab/config/resque.yml
 
 echo "Run gitlab:check"
 cd ~git/gitlab && sudo -u git bundle exec rake gitlab:check SANITIZE=true RAILS_ENV=production
