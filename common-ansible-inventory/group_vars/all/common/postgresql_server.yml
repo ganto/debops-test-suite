@@ -2,3 +2,25 @@
 
 postgresql_server__delegate_to: 'localhost'
 
+# Debug PostgreSQL issues
+postgresql_server__hba_local:
+
+  - comment:  'Access through local UNIX socket with password'
+    type:     'local'
+    database: 'samerole'
+    user:     'all'
+    method:   'md5'
+
+  - comment:  'Access from localhost via IP'
+    type:     'host'
+    database: 'samerole'
+    user:     'all'
+    address:  '127.0.0.1'
+    method:   'md5'
+
+  - comment:  'Access from localhost'
+    type:     'host'
+    database: 'samerole'
+    user:     'all'
+    address:  'localhost'
+    method:   'md5'
