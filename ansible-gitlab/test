@@ -130,7 +130,7 @@ go version
 #sudo cat /var/local/git/gitlab/config/resque.yml
 
 echo "Run gitlab:check"
-cd ~git/gitlab && sudo -u git bundle exec rake gitlab:check SANITIZE=true RAILS_ENV=production
+sudo su git -c 'cd /var/local/git/gitlab ; bundle exec rake gitlab:check SANITIZE=true RAILS_ENV=production'
 
 assert_url "http://localhost.localdomain/users/sign_in" 302
 
