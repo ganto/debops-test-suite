@@ -15,7 +15,7 @@ postgresql_server__hba_local:
     type:     'host'
     database: 'samerole'
     user:     'all'
-    address:  '127.0.0.1'
+    address:  '127.0.0.1/32'
     method:   'md5'
 
   - comment:  'Access from localhost'
