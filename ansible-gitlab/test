@@ -82,6 +82,9 @@ ansible-galaxy -f install debops.ferm \
 assert_playbook_check_runs
 
 echo "Check contents of PostgreSQL configuration"
+apt-cache policy postgresql
+dpkg -l | grep postgresql
+
 sudo cat /etc/postgresql/*/*/pg_hba.conf
 
 sudo -u postgres psql -c '\du'
