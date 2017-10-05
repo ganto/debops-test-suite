@@ -40,10 +40,20 @@ cd "/tmp/testapp"
 git init && git add -A && git commit -m "Initial commit"
 cd -
 
-# Add Ruby 2.1 from PPA
+if [[ -n "${ROLESPEC_TRAVIS}" ]]; then
+  __rvm unload ; rm -rf ~/.rvm
+fi
+
+
+echo "Clean up the environment"
+unset rvm_bin_path GEM_HOME IRBRC MY_RUBY_HOME rvm_autoupdate_flag rvm_path RACK_ENV rvm_prefix rvm_version RAILS_ENV GEM_PATH RUBY_VERSION rvm_silence_path_mismatch_check_flag
+sudo apt-get --purge -qy remove 'ruby*'
+
+# Add Ruby 2.1 PPA
 sudo apt-get -yq install python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
-sudo apt-get -qq update
+sudo apt-get -yq update
+apt-cache policy ruby ruby2.1 ruby2.1-dev rubygems-integration
 
 # Fix travis nvm error
 chmod 777 -R /home/travis/.nvm
