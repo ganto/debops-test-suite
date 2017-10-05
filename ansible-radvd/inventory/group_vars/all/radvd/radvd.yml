@@ -1,0 +1,19 @@
+---
+
+# Travis does not support IPv6, so force radvd configuration
+radvd__host_interfaces:
+
+  - name: 'br2'
+    options:
+      - 'AdvSendAdvert': True
+      - 'IgnoreIfMissing': True
+    prefixes:
+      - name: 'fd02:f773:3c06::1/64'
+        options:
+          - 'AdvOnLink': True
+          - 'AdvAutonomous': True
+    rdnss:
+      - '2001:4860:4860::8888'
+      - '2001:4860:4860::8844'
+    dnssl:
+      - 'example.org'
