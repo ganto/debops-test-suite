@@ -16,10 +16,20 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.ferm debops.ifupdown
+
+
 assert_playbook_check_runs
 assert_playbook_idempotent
 
 
+echo "Check network configuration"
+ip address show
+
+echo "Check radvd.conf"
+cat /etc/radvd.conf
+
 # Check if configuration file is present
 assert_path "/etc/radvd.conf"
 
+assert_docs
