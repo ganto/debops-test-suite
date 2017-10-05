@@ -21,7 +21,14 @@ purge ${ROLESPEC_POSTGRESQL_LIBS}
 sudo rm -rf /var/lib/postgresql
 
 
+echo "Check PG policy"
+apt-cache policy postgresql
+
 assert_playbook_check_runs
+
+echo "Check PG policy"
+apt-cache policy postgresql
+
 assert_playbook_idempotent
 
 
