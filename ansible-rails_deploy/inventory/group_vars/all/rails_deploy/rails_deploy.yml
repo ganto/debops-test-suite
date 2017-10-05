@@ -1,14 +1,5 @@
 ---
 
-# Don't install 'rubygems-integration' because it's not present in Precise
-ruby_gems_integration: False
-
-# Our ruby is different
-ruby__host_packages: [ 'ruby2.1', 'ruby2.1-dev', 'rubygems' ]
-
-# Don't install any gems by default
-ruby__host_gems: [ 'bundler' ]
-
 # Allow everyone on the local network to talk to redis
 redis_bind: ['0.0.0.0']
 redis_server_allow: '{{ ["192.168.0.0/16"] + groups["debops_rails_deploy"] }}'
