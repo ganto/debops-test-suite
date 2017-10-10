@@ -31,6 +31,9 @@ sudo rm -rf /var/lib/postgresql
 
 fix_precise_issues
 
+echo "Check what APT repositories are active"
+ls -l /etc/apt/sources.list.d
+
 # Add Ruby 2.1 PPA and Golang PPA
 sudo apt-get -yq install python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
