@@ -1,4 +1,7 @@
 ---
 
+postgresql__base_packages: [ 'postgresql-client-9.6' ]
+postgresql__preferred_version: '9.6'
+
 #postgresql__delegate_to: 'localhost'
 

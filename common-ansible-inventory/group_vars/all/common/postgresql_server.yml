@@ -1,5 +1,10 @@
 ---
 
+# Force older PostgreSQL version for the time being
+postgresql_server__base_packages: [ 'postgresql-9.6', 'postgresql-client-9.6', 'postgresql-contrib-9.6' ]
+postgresql_server__preferred_version: '9.6'
+
+
 postgresql_server__delegate_to: 'localhost'
 
 # Debug PostgreSQL issues

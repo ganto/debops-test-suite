@@ -31,9 +31,6 @@ sudo rm -rf /var/lib/postgresql
 
 fix_precise_issues
 
-echo "Remove PGDG repositories"
-sudo rm -f /etc/apt/sources.list.d/pgdg.list
-
 # Add Ruby 2.1 PPA and Golang PPA
 sudo apt-get -yq install python-software-properties
 sudo apt-add-repository -y ppa:brightbox/ruby-ng
