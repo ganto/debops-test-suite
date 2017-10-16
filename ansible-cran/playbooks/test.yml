@@ -12,5 +12,9 @@
     - role: debops.apt_preferences
       apt_preferences__dependent_list:
         - '{{ cran__apt_preferences__dependent_list }}'
+        - '{{ java__apt_preferences__dependent_list }}'
+
+    - role: 'debops.java'
+      java__install_jdk: True
 
     - role: 'ansible-cran'

@@ -25,3 +25,8 @@ cran__r_packages:
   - 'bitops'
   - 'zoo'
   - 'knitr'
+
+  # Java support and packages
+  - 'rJava'
+  - 'RJDBC'
+  - 'xlsx'
