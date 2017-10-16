@@ -1,0 +1,4 @@
+---
+
+# Test JDK installation
+java__install_jdk: True
