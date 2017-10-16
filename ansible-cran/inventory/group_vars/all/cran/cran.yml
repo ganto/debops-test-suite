@@ -1,0 +1,27 @@
+---
+
+# List of additional R packages to install
+cran__r_packages:
+
+  # Top 20 most popular R packages
+  # https://www.kdnuggets.com/2015/06/top-20-r-packages.html
+  - 'Rcpp'
+  - 'ggplot2'
+  - 'stringr'
+  - 'plyr'
+  - 'digest'
+  - 'reshape2'
+  - 'colorspace'
+  - 'RColorBrewer'
+  - 'manipulate'
+  - 'scales'
+  - 'labeling'
+  - 'proto'
+  - 'munsell'
+  - 'gtable'
+  - 'dichromat'
+  - 'mime'
+  - 'RCurl'
+  - 'bitops'
+  - 'zoo'
+  - 'knitr'
