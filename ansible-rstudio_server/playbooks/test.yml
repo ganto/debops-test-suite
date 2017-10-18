@@ -20,9 +20,9 @@
         - '{{ java__apt_preferences__dependent_list
               if cran__java_integration|bool else [] }}'
 
-    #- role: debops.ferm
-    #  ferm__dependent_rules:
-    #    - '{{ nginx__ferm__dependent_rules }}'
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nginx__ferm__dependent_rules }}'
 
     - role: debops.nginx
       nginx__dependent_servers:
