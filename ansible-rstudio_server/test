@@ -12,7 +12,7 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-ansible-galaxy -f install debops.etc_services debops.ferm debops.apt_preferences \
+ansible-galaxy -f install debops.etc_services debops.apt_preferences \
                           debops.nginx debops.java debops.cran
 
 
