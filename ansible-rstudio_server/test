@@ -9,7 +9,7 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
-upgrade_packages python
+upgrade_packages_xenial python
 
 
 install_ansible ${test_ansible_version}
