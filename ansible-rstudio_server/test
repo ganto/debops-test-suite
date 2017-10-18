@@ -16,7 +16,7 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 until ansible-galaxy -f install debops.etc_services debops.apt_preferences debops.nginx debops.java debops.cran debops.ferm ; do
-    sleep 5 ; echo "Trying installation again..." ; done
+    echo "Waiting 60s..." ; sleep 60 ; echo "Trying installation again..." ; done
 
 
 assert_playbook_check_runs
