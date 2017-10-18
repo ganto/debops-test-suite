@@ -15,7 +15,7 @@ upgrade_packages python
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-until ansible-galaxy -f install debops.etc_services debops.apt_preferences debops.nginx debops.java debops.cran debops.ferm ; do
+until ansible-galaxy install debops.etc_services debops.apt_preferences debops.nginx debops.java debops.cran debops.ferm ; do
     echo "Waiting 60s..." ; sleep 60 ; echo "Trying installation again..." ; done
 
 
