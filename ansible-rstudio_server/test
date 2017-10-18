@@ -11,6 +11,9 @@
 
 upgrade_packages_xenial python python-dateutil
 
+# Fix python datetime issue
+cp -f /usr/bin/python2.7 $(which python2.7)
+
 
 install_ansible ${test_ansible_version}
 ansible_plugins
