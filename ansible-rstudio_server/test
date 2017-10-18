@@ -12,15 +12,8 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-
-assert_playbook_check_runs
-assert_playbook_idempotent
-
-
-echo "Installing RStudio Server..."
-wget http://download2.rstudio.org/rstudio-server-0.98.1103-amd64.deb
-sudo dpkg -i rstudio-server-*.deb
-sudo service rstudio-server stop
+ansible-galaxy -f install debops.etc_services debops.ferm debops.apt_preferences \
+                          debops.nginx debops.java debops.cran
 
 
 assert_playbook_check_runs
@@ -33,4 +26,3 @@ assert_running "rserver"
 
 # Test documentation
 assert_docs
-
