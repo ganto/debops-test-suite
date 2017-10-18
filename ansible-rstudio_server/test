@@ -9,6 +9,9 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
+# Remove Riak repository because it causes errors
+sudo rm -f /etc/apt/sources.list.d/basho_riak.list
+
 upgrade_packages_xenial python python-dateutil
 
 # Fix python datetime issue
