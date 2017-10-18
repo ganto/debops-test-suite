@@ -15,6 +15,10 @@ upgrade_packages_xenial python python-dateutil
 cp -f /usr/bin/python2.7 $(which python2.7)
 
 
+echo "List contents of /etc/apt/sources.list.d/"
+ls -l /etc/apt/sources.list.d
+
+
 install_ansible ${test_ansible_version}
 ansible_plugins
 
