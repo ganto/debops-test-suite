@@ -12,7 +12,8 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-ansible-galaxy -f install debops.ferm
+until ansible-galaxy install debops.ferm ; do
+        echo "Waiting 60s..." ; sleep 60 ; echo "Trying installation again..." ; done
 
 assert_playbook_check_runs
 assert_playbook_idempotent
